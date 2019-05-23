@@ -1,0 +1,15 @@
+{
+  "files": {
+    "main.css": "/color-tool/static/css/main.22bb0016.chunk.css",
+    "main.js": "/color-tool/static/js/main.540cf8eb.chunk.js",
+    "main.js.map": "/color-tool/static/js/main.540cf8eb.chunk.js.map",
+    "runtime~main.js": "/color-tool/static/js/runtime~main.54b4da09.js",
+    "runtime~main.js.map": "/color-tool/static/js/runtime~main.54b4da09.js.map",
+    "static/js/2.f7ae880a.chunk.js": "/color-tool/static/js/2.f7ae880a.chunk.js",
+    "static/js/2.f7ae880a.chunk.js.map": "/color-tool/static/js/2.f7ae880a.chunk.js.map",
+    "index.html": "/color-tool/index.html",
+    "precache-manifest.d0cc29110e8de3da1af1ce95bb75e49d.js": "/color-tool/precache-manifest.d0cc29110e8de3da1af1ce95bb75e49d.js",
+    "service-worker.js": "/color-tool/service-worker.js",
+    "static/css/main.22bb0016.chunk.css.map": "/color-tool/static/css/main.22bb0016.chunk.css.map"
+  }
+}

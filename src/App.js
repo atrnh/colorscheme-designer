@@ -1,70 +1,48 @@
 import React from 'react';
 import { StyleSheet, css } from 'aphrodite';
-import ColorBox from './components/ColorBox';
+import PreviewCard from './components/PreviewCard';
 import Sidebar from './components/Sidebar';
 
-const layout = StyleSheet.create({
-  grid: {
-    display: 'grid',
-    gridTemplateColumns: '30% 1fr',
-    minHeight: '100%'
-  },
-});
-
-const styles = StyleSheet.create({
-  container: {
-    width: '100%',
-    height: '100%'
-  },
-
-  colorBoxes: {
-    display: 'flex',
-    flexWrap: 'wrap'
-  },
-
-  ctlText: {
-    padding: '5px',
-  },
-});
+const defaultColors = [
+  {
+    fg: {
+      hex: 'white',
+      hsl: {
+        h: 0,
+        s: 0,
+        l: 1.0
+      }
+    },
+    bg: {
+      hex: 'black',
+      hsl: {
+        h: 0,
+        s: 0,
+        l: 0
+      }
+    }
+  }
+];
 
 class App extends React.Component {
   constructor() {
     super();
     this.state = {
       displayText: 'hi',
-      colors: [
-        {
-          fg: {
-            hex: 'white',
-            hsl: {
-              h: 0,
-              s: 0,
-              l: 1.0
-            }
-          },
-          bg: {
-            hex: 'black',
-            hsl: {
-              h: 0,
-              s: 0,
-              l: 0
-            }
-          }
-        }
-      ],
+      colors: defaultColors,
       active: {
         key: 0,
         prop: 'fg'
       }
     };
 
-    this.addBox = this.addBox.bind(this);
+    this.addCard= this.addCard.bind(this);
     this.changeText = this.changeText.bind(this);
     this.activateColor = this.activateColor.bind(this);
     this.onColorChange = this.onColorChange.bind(this);
   }
 
-  addBox() {
+  addCard() {
     this.setState(({ colors }) => {
       const latest = { ...colors[colors.length - 1] };
       return { colors: [...colors, latest ] };
@@ -99,7 +77,7 @@ class App extends React.Component {
           prevText={displayText}
           color={colors[active.key][active.prop]}
           onPrevTextChange={this.changeText}
-          onAddBox={this.addBox}
+          onAddBox={this.addCard}
           onColorChange={this.onColorChange}
         />
         <section className={css(layout.section)}>
@@ -121,5 +99,29 @@ class App extends React.Component {
     );
   }
 }
+
+const layout = StyleSheet.create({
+  grid: {
+    display: 'grid',
+    gridTemplateColumns: '30% 1fr',
+    minHeight: '100%'
+  },
+});
+
+const styles = StyleSheet.create({
+  container: {
+    width: '100%',
+    height: '100%'
+  },
+
+  colorBoxes: {
+    display: 'flex',
+    flexWrap: 'wrap'
+  },
+
+  ctlText: {
+    padding: '5px',
+  },
+});
 
 export default App;

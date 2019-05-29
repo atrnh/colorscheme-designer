@@ -1,45 +1,67 @@
 import React from 'react';
 import { StyleSheet, css } from 'aphrodite';
 
-export default ({
-  label,
-  color,
-  ...props
-}) => {
-  return (
-    <button
-      className={css( styles.btn )}
-      {...props}
-    >
-      <div>
-        {label}
-      </div>
+class ColorButton extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      colorText: props.color.hex
+    };
 
-      <div
-        onClick={() => navigator.clipboard.writeText(color.hex)}
-        type="text"
-        className={css(styles.colorCode)}
-        style={{
-          background: color.hex,
-          color: color.hsl.l > 0.50 ? 'black' : 'white'
-        }}
+    this.copyColor = this.copyColor.bind(this);
+  }
+
+  copyColor(text) {
+    navigator.clipboard.writeText(text)
+      .then(() => {
+        this.setState({ colorText: 'copied!' });
+        setTimeout(
+          () => this.setState({ colorText: this.props.color.hex }),
+          800
+        );
+      });
+  }
+
+  render() {
+    const { label, color, ...props } = this.props;
+    const { colorText } = this.state;
+
+    return (
+      <button
+        className={css( styles.btn )}
+        {...props}
       >
-        {color.hex}
-      </div>
-    </button>
-  );
+        <div>
+          {label}
+        </div>
+
+        <div
+          onClick={() => this.copyColor(color.hex)}
+          type="text"
+          className={css(styles.colorCode)}
+          style={{
+            background: color.hex,
+            color: color.hsl.l > 0.75 ? 'black' : 'white'
+          }}
+        >
+          {colorText}
+        </div>
+      </button>
+    );
+  }
 }
 
 const styles = StyleSheet.create({
   btn: {
     borderStyle: 'solid',
-    borderWidth: '1px 1px 5px 5px',
+    borderWidth: '1px',
     display: 'flex',
     fontSize: '0.7rem',
     flexDirection: 'column',
     justifyContent: 'center',
     alignItems: 'center',
-    margin: '2px 0',
+    margin: '2px',
+    padding: '2px',
     background: '#eee',
     borderColor: 'white'
   },
@@ -52,3 +74,5 @@ const styles = StyleSheet.create({
     textAlign: 'center'
   },
 })
+
+export default ColorButton;

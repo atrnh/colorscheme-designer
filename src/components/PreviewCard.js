@@ -20,6 +20,14 @@ export default ({
       className={css(styles.colorBox)}
       {...props}
     >
+      <PreviewText
+        styles={[
+          styles.italic,
+          styles.bold,
+          styles.normal
+        ]}
+        text={previewText}
+      />
       <section className={css(styles.buttonPanel)}>
         <ColorButton
           label="fg"
@@ -32,40 +40,27 @@ export default ({
           onClick={changeBg}
         />
       </section>
-
-      <PreviewText
-        styles={[
-          styles.italic,
-          styles.bold,
-          styles.normal
-        ]}
-        text={previewText}
-      />
     </div>
   );
 }
 
 const styles = StyleSheet.create({
   colorBox: {
-    display: 'flex',
-    margin: '0.5rem 0',
+    display: 'grid',
+    gridTemplateRows: '2fr 1fr',
     padding: '10px',
     maxHeight: '8em',
     minWidth: '10em'
   },
 
   buttonPanel: {
-    display: 'flex',
-    flexDirection: 'column',
-    justifyContent: 'center',
-    alignItems: 'center'
+    display: 'flex'
   },
 
   previewText: {
     fontSize: '1.13em',
     margin: '0 20px',
     display: 'flex',
-    flexDirection: 'column',
     justifyContent: 'space-evenly',
   },
 
